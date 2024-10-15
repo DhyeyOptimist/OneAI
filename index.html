@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+        h1 span {
+            color: #8e44ad;
+        }
+        h2 {
+            color: #8e44ad;
+            margin-top: 0;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .prompt-item {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .prompt-item:hover {
+            background-color: #e0e0e0;
+        }
+        .refresh-button {
+            background-color: transparent;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .refresh-icon {
+            margin-right: 0.5rem;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <h1>Hi there, <span>John</span></h1>
+        <h2>What would you like to know?</h2>
+        <p class="subtitle">Use one of the most common prompts below or use your own to begin</p>
+        <div class="prompt-grid">
+            <div class="prompt-item">Write a to-do list for a personal project or task</div>
+            <div class="prompt-item">Generate an email to reply to a job offer</div>
+            <div class="prompt-item">Summarize this article or text for me in one paragraph</div>
+            <div class="prompt-item">How does AI work in a technical capacity</div>
+        </div>
+        <button class="refresh-button">
+            <span class="refresh-icon">↻</span> Refresh Prompts
+        </button>
+        <input id="promp-box" type="text" placeholder="Ask whatever you want....">
+    </div>
+
+    <script>
+        document.querySelectorAll('.prompt-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#e0e0e0';
+                setTimeout(() => {
+                    item.style.backgroundColor = '#f9f9f9';
+                }, 300);
+            });
+        });
+
+        document.querySelector('.refresh-button').addEventListener('click', () => {
+            document.querySelector('.prompt-grid').classList.remove('fade-in');
+            void document.querySelector('.prompt-grid').offsetWidth;
+            document.querySelector('.prompt-grid').classList.add('fade-in');
+        });
+        document.addEventListener(,"promp-box");
+
+    </script>
+</body>
+</html>
